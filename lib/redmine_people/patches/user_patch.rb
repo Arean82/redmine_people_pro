@@ -53,11 +53,11 @@ module RedminePeople
 
           if person.is_a?(User) && person.id == id
             return true if permission == :view_people
-            return true if permission == :edit_people && Setting.plugin_redmine_people['edit_own_data'].to_i > 0
+            return true if permission == :edit_people && Setting.plugin_redmine_people_pro['edit_own_data'].to_i > 0
           end
 
           return false unless RedminePeople.available_permissions.include?(permission)
-          return true if permission == :view_people && !anonymous? && Setting.plugin_redmine_people['visibility'].to_i > 0
+          return true if permission == :view_people && !anonymous? && Setting.plugin_redmine_people_pro['visibility'].to_i > 0
 
           (groups + [self]).any? { |principal| PeopleAcl.allowed_to?(principal, permission) }
         end
