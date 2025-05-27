@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with redmine_people.  If not, see <http://www.gnu.org/licenses/>.
 
-class RemoveUsersColumns < ActiveRecord::Migration
+class RemoveUsersColumns < ActiveRecord::Migration[4.2]
   def self.up
     remove_column :users, :phone
     remove_column :users, :address

@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with redmine_people.  If not, see <http://www.gnu.org/licenses/>.
 
-class AddIsSystemToPeopleInformation < ActiveRecord::Migration
+class AddIsSystemToPeopleInformation < ActiveRecord::Migration[4.2]
 
   def self.up
     add_column :people_information, :is_system, :boolean, :default => false

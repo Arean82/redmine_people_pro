@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with redmine_people.  If not, see <http://www.gnu.org/licenses/>.
 
-class ActsAsTaggableMigration < ActiveRecord::Migration
+class ActsAsTaggableMigration < ActiveRecord::Migration[4.2]
   def self.up
     ActiveRecord::Base.create_taggable_table
   end

@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with redmine_people.  If not, see <http://www.gnu.org/licenses/>.
 
-class PopulatePeopleInformation < ActiveRecord::Migration
+class PopulatePeopleInformation < ActiveRecord::Migration[4.2]
   def self.up
     sql = "INSERT INTO #{PeopleInformation.table_name} (user_id, phone, address, skype, " +
           " birthday, job_title, company, middlename, gender, twitter, facebook, linkedin, background, appearance_date, department_id)" +

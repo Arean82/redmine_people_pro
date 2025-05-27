@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with redmine_people.  If not, see <http://www.gnu.org/licenses/>.
 
-class CreatePeopleInformation < ActiveRecord::Migration
+class CreatePeopleInformation < ActiveRecord::Migration[4.2]
   def self.up
     create_table :people_information , :id => false do |t|
       t.primary_key :user_id
