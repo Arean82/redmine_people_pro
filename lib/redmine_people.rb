@@ -3,7 +3,8 @@
 lib_path = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
-require 'people_acl'
+# require 'people_acl'
+require_dependency 'people_acl'
 
 Rails.configuration.to_prepare do
   require_dependency 'redmine_people/helpers/redmine_people'
