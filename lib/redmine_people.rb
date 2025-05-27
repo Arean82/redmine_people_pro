@@ -1,9 +1,8 @@
-
 # Add the lib directory to the $LOAD_PATH so Ruby can find people_acl.rb
 lib_path = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
-# require 'people_acl'
+# Require people_acl.rb from the same lib directory
 require_dependency 'people_acl'
 
 Rails.configuration.to_prepare do
@@ -25,13 +24,18 @@ module RedminePeople
     [:edit_people, :view_people, :add_people, :delete_people, :edit_departments, :delete_departments, :manage_tags, :manage_public_people_queries]
   end
 
-  def self.settings() Setting[:plugin_redmine_people] end
+  def self.settings
+    Setting[:plugin_redmine_people]
+  end
 
-  def self.users_acl() Setting.plugin_redmine_people[:users_acl] || {} end
+  def self.users_acl
+    Setting.plugin_redmine_people[:users_acl] || {}
+  end
 
   def self.default_list_style
-    return (%w(list list_excerpt) && [RedminePeople.settings["default_list_style"]]).first || "list_excerpt"
-    return 'list_excerpt'
+    # This was redundant, simplified:
+    list_style = RedminePeople.settings["default_list_style"]
+    %w[list list_excerpt].include?(list_style) ? list_style : "list_excerpt"
   end
 
   def self.url_exists?(url)
@@ -43,5 +47,4 @@ module RedminePeople
       false
     end
   end
-
 end
