@@ -20,9 +20,10 @@
 class DepartmentsController < ApplicationController
   unloadable
 
-  before_filter :find_department, :except => [:index, :create, :new]
-  before_filter :require_admin, :only => [:destroy, :new, :create]
-  before_filter :authorize_people, :only => [:update, :edit, :add_people, :remove_person]
+  before_action :find_department, except: [:index, :create, :new]
+  before_action :require_admin, only: [:destroy, :new, :create]
+  before_action :authorize_people, only: [:update, :edit, :add_people, :remove_person]
+
 
   helper :attachments
 

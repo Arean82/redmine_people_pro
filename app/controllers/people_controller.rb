@@ -22,12 +22,13 @@ class PeopleController < ApplicationController
 
   Mime::Type.register "text/x-vcard", :vcf
 
-  before_filter :find_person, :only => [:show, :edit, :update, :destroy, :edit_membership, :destroy_membership, :load_tab]
-  before_filter :authorize_people, :except => [:avatar, :context_menu, :autocomplete_tags]
-  before_filter :bulk_find_people, :only => [:context_menu]
-  before_filter :visible?, :only => [:show, :load_tab]
-  before_filter :load_person_attachments, :load_person_memberships, :load_person_events, :only => [:show, :load_tab]
+  before_action :find_person, only: [:show, :edit, :update, :destroy, :edit_membership, :destroy_membership, :load_tab]
+  before_action :authorize_people, except: [:avatar, :context_menu, :autocomplete_tags]
+  before_action :bulk_find_people, only: [:context_menu]
+  before_action :visible?, only: [:show, :load_tab]
+  before_action :load_person_attachments, :load_person_memberships, :load_person_events, only: [:show, :load_tab]
 
+  
   include PeopleHelper
   helper :queries
   helper :departments

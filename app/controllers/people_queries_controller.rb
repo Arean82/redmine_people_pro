@@ -18,7 +18,7 @@
 # along with redmine_people.  If not, see <http://www.gnu.org/licenses/>.
 
 class PeopleQueriesController < ApplicationController
-  before_filter :find_query, :except => [:new, :create, :index]
+  before_action :find_query, except: [:new, :create, :index]
 
   accept_api_auth :index
 

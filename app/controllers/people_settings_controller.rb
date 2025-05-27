@@ -22,8 +22,9 @@ class PeopleSettingsController < ApplicationController
   menu_item :people_settings
 
   layout 'admin'
-  before_filter :require_admin
-  before_filter :find_acl, :find_principals, :only => [:index]
+  before_action :require_admin
+  before_action :find_acl, :find_principals, only: [:index]
+
 
   helper :departments
   helper :people
