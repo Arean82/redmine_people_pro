@@ -1,4 +1,6 @@
 
+
+
 class PeopleAcl
   attr_accessor :principal_id, :permissions
 
