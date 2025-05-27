@@ -17,7 +17,8 @@ class Department < ActiveRecord::Base
     include DepartmentNestedSet
   end
 
-  acts_as_attachable_global
+  # acts_as_attachable_global
+  acts_as_attachable
 
   validates :name, presence: true, uniqueness: true
 
