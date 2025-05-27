@@ -69,4 +69,4 @@ module RedminePeople
   end
 end
 
-ActionView::Base.send :include, RedminePeople::Helper
+ActionView::Base.send :include, RedminePeople::Helpers
