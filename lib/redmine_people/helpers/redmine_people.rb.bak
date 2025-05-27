@@ -1,7 +1,6 @@
 
 module RedminePeople
-  module Helpers
-    module PeopleHelper
+  module Helper
     def people_tag_url(tag_name, options={})
       {:controller => 'people',
        :action => 'index',
@@ -65,7 +64,7 @@ module RedminePeople
         link_to department.name, department_path(department.id, options)
       end.join(' &#187; ').html_safe
     end
-	end
+
   end
 end
 
