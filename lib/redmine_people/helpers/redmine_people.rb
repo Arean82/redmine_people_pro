@@ -1,7 +1,7 @@
 
 module RedminePeople
   module Helpers
-    module PeopleHelper
+    module RedminePeople  
     def people_tag_url(tag_name, options={})
       {:controller => 'people',
        :action => 'index',
