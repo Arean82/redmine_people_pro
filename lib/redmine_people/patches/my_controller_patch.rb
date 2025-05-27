@@ -1,5 +1,3 @@
-
-
 module RedminePeople
   module Patches
     module MyControllerPatch
@@ -15,7 +13,6 @@ module RedminePeople
         def authorize_people
           deny_access unless User.current.allowed_people_to?(:edit_people, User.current)
         end
-
       end
     end
   end
