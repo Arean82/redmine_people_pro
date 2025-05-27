@@ -1,6 +1,6 @@
 
 
-
+require_dependency 'redmine/acts/attachable_global'
 require_dependency 'project'
 require_dependency 'principal'
 require_dependency 'user'
