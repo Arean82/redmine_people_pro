@@ -19,7 +19,7 @@
 
 requires_redmine_crm :version_or_higher => '0.0.19' rescue raise "\n\033[31mRedmine requires newer redmine_crm gem version.\nPlease update with 'bundle update redmine_crm'.\033[0m"
 
-require 'redmine_people'
+# require 'redmine_people'
 
 PEOPLE_VERSION_NUMBER = '1.1.1'
 PEOPLE_VERSION_TYPE = "PRO version"
