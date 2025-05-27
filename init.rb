@@ -3,14 +3,14 @@ requires_redmine_crm :version_or_higher => '0.0.19' rescue raise "\n\033[31mRedm
 # Add plugin's lib folder to the load path to find redmine_people.rb
 $LOAD_PATH.unshift(File.expand_path('lib', __dir__))
 
-# require 'redmine_people'
+require 'redmine_people'
 require 'redmine/acts/attachable_global'  # added this line to load your module
 
 PEOPLE_VERSION_NUMBER = '1.1.1'
 PEOPLE_VERSION_TYPE = "PRO version"
 
-#Redmine::Plugin.register :redmine_people do
-Redmine::Plugin.register :redmine_people_pro do
+Redmine::Plugin.register :redmine_people do
+#Redmine::Plugin.register :redmine_people_pro do
   name "Redmine People plugin (#{PEOPLE_VERSION_TYPE})"
   author 'RedmineCRM'
   description 'This is a plugin for managing Redmine users'
