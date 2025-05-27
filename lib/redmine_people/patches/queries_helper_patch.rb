@@ -1,34 +1,18 @@
-
-
-
 require_dependency 'queries_helper'
 
 module RedminePeople
   module Patches
     module QueriesHelperPatch
-      def self.included(base)
-        base.send(:include, InstanceMethods)
-
-        base.class_eval do
-          unloadable
-          alias_method_chain :column_value, :people
-        end
-      end
-
-
-      module InstanceMethods
-        def column_value_with_people(column, list_object, value)
-          if column.name == :id && list_object.is_a?(Person)
+      def column_value(column, list_object, value)
+        if list_object.is_a?(Person)
+          case column.name
+          when :id
             link_to value, person_path(value)
-          elsif column.name == :gender && list_object.is_a?(Person)
-            if value == 1
-              l(:label_people_female)
-            else
-              l(:label_people_male)
-            end
-          elsif column.name == :name && list_object.is_a?(Person)
+          when :gender
+            value == 1 ? l(:label_people_female) : l(:label_people_male)
+          when :name
             person_tag(list_object)
-          elsif column.name == :status && list_object.is_a?(Person)
+          when :status
             case value
             when Principal::STATUS_ACTIVE
               l(:status_active)
@@ -39,25 +23,20 @@ module RedminePeople
             else
               value
             end
-          elsif column.name == :department_id && list_object.is_a?(Person)
+          when :department_id
             department_tree_tag(list_object)
-          elsif column.name == :tags && list_object.is_a?(Person)
-            person_tags = []
-            value.each do |tag|
-              person_tags << tag.name
-            end
-            person_tags.join(", ")         
+          when :tags
+            value.map(&:name).join(", ")
           else
-            column_value_without_people(column, list_object, value)
+            super
           end
+        else
+          super
         end
-
       end
-
     end
   end
 end
 
-unless QueriesHelper.included_modules.include?(RedminePeople::Patches::QueriesHelperPatch)
-  QueriesHelper.send(:include, RedminePeople::Patches::QueriesHelperPatch)
-end
+# Apply the patch with `prepend`
+QueriesHelper.prepend(RedminePeople::Patches::QueriesHelperPatch)
