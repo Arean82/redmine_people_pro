@@ -1,4 +1,5 @@
 
+
 require 'people_acl'
 
 Rails.configuration.to_prepare do
